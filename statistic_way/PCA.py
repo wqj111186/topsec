@@ -1,19 +1,14 @@
 #-*- coding: utf-8 -*-
-# Author: Bob
-# Date:   2016.11.24
 import numpy as np
 from matplotlib import pyplot as plt
 from scipy import io as spio
 from sklearn.decomposition import pca
 
-'''
-主成分分析_2维数据降维1维演示函数
-'''
 def PCA_2D(X):
-    data_2d = spio.loadmat("data.mat")
+    #data_2d = spio.loadmat("data.mat")
     #X = data_2d['X']
     m = X.shape[0]
-    plt = plot_data_2d(X,'bo') # 显示二维的数据
+    plt = plot_data_2d(X, 'bo') # 显示二维的数据
     plt.show()
     
     X_copy = X.copy()
@@ -24,7 +19,7 @@ def PCA_2D(X):
     Sigma = np.dot(np.transpose(X_norm), X_norm)/m  # 求Sigma
     U, S, V = np.linalg.svd(Sigma)       # 求Sigma的奇异值分解
     
-    plt = plot_data_2d(X,'bo') # 显示原本数据
+    plt = plot_data_2d(X, 'bo') # 显示原本数据
     drawline(plt, mu, mu+S[0]*(U[:,0]), 'r-')  # 线，为投影的方向
 
     plt.axis('square')
@@ -83,4 +78,3 @@ def recoverData(Z, U, K):
 
 if __name__ == "__main__":
     PCA_2D()
-    PCA_faceImage()
